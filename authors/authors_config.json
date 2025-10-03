@@ -3,26 +3,26 @@
     {
       "fullname": "Юрин Андрей Юрьевич",
       "education_group": "3825М1ПР1",
-      "avatar": "avatar/namxobick.png"
+      "avatar": "avatars/namxobick.png"
     },
     {
       "fullname": "Крисеев Михаил Алексеевич",
       "education_group": "3825М1ПМвм1",
-      "avatar": "avatar/kriseev.png"
+      "avatar": "avatars/kriseev.png"
     }
   ],
   "past_authors": [
     {
       "fullname": "Соколова Дарья Владимировна",
-      "avatar": "avatar/darya.png"
+      "avatar": "avatars/darya.png"
     },
     {
       "fullname": "Ванюшкин Дмитрий Игоревич",
-      "avatar": "avatar/dmitry.png"
+      "avatar": "avatars/dmitry.png"
     },
     {
       "fullname": "Паймухин Виталий Евгеньевич",
-      "avatar": "avatar/vitaly.png"
+      "avatar": "avatars/dmitry.png"
     }
   ]
 }
