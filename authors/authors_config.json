@@ -3,12 +3,14 @@
     {
       "fullname": "Юрин Андрей Юрьевич",
       "education_group": "3825М1ПР1",
-      "avatar": "avatars/namxobick.png"
+      "avatar": "avatars/namxobick.png",
+      "user_id": 424843
     },
     {
       "fullname": "Крисеев Михаил Алексеевич",
       "education_group": "3825М1ПМвм1",
-      "avatar": "avatars/kriseev.png"
+      "avatar": "avatars/kriseev.png",
+      "user_id": 426673
     }
   ],
   "past_authors": [
