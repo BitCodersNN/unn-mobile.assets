@@ -3,7 +3,7 @@
         {
             "logo_path": "logos/default-logo.png",
             "name": "Default logo",
-            "description": {
+            "title": {
                 "text": "СТУДЕНЧЕСКИЙ ХАБ ДЛЯ ННГУ [НЕОФИЦИАЛЬНОЕ]",
                 "color": "0xFF000000"
             }
