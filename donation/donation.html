@@ -2,111 +2,156 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Поддержать проект</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4fbf8" />
+  <meta name="description" content="Поддержите развитие Студенческого хаба ННГУ и публикацию приложения в App Store." />
+  <title>Поддержать Студенческий хаб</title>
+  <script>
+    const parameters = new URLSearchParams(window.location.search);
+    for (const name of ['background', 'surface', 'foreground', 'muted', 'primary', 'outline']) {
+      const value = parameters.get(name);
+      if (value && /^[\da-f]{6}$/i.test(value)) {
+        document.documentElement.style.setProperty(`--${name}`, `#${value}`);
+      }
+    }
+    if (parameters.get('embedded') === '1') {
+      document.documentElement.dataset.embedded = 'true';
+    }
+  </script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      color-scheme: light;
+      --background: #f4fbf8;
+      --surface: #ffffff;
+      --foreground: #182d2a;
+      --muted: #52635f;
+      --primary: #006a63;
+      --outline: #d5e3df;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
-    body {
-      background-color: #EFF1FB;
-      color: #1b232c;
-      padding: 20px 16px;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--background); color: var(--foreground); line-height: 1.55; }
+    svg { display: block; flex: none; }
+    h1, h2, p { margin: 0; }
 
-    .section {
-      background: white;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    }
-
-    h2 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 18px;
-      text-align: center;
-      color: #1b232c;
-    }
-
-    .widget-container {
-      display: flex;
-      justify-content: center;
-    }
-
-    #support-widget iframe {
+    .page {
       width: 100%;
-      max-width: 240px;
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 28px max(16px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    }
+    [data-embedded] .page { padding: 8px 16px 24px; }
+    .intro { padding: 12px 4px 26px; }
+    .intro-icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
       height: 48px;
-      border: none;
-      border-radius: 14px;
-      display: block;
-      margin: 0 auto;
+      margin-bottom: 16px;
+      border: 1px solid var(--outline);
+      border-radius: 16px;
+      color: var(--primary);
+      background: var(--surface);
     }
-
-    #account-widget .widget-wrapper {
-      overflow: hidden;
-      height: 210px;
-      width: 100%;
-      max-width: 300px;
-      margin: 0 auto;
-      border-radius: 14px;
-      position: relative;
-    }
-
-    #account-widget .widget-wrapper iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-      position: relative;
-      bottom: 290px;
-      display: block;
-    }
-
-    .footnote {
-      font-size: 13px;
-      color: #777;
-      text-align: center;
-      line-height: 1.5;
-      margin-top: 16px;
+    h1 { max-width: 22ch; font-size: 1.6rem; line-height: 1.2; font-weight: 650; letter-spacing: -0.035em; }
+    .intro p { margin-top: 12px; color: var(--muted); font-size: 0.9375rem; }
+    .card { padding: 20px; margin-bottom: 16px; background: var(--surface); border: 1px solid var(--outline); border-radius: 20px; }
+    .card-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .card-icon { padding: 9px; border-radius: 12px; color: var(--primary); border: 1px solid var(--outline); }
+    h2 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.015em; }
+    .description { color: var(--muted); font-size: 0.9375rem; }
+    .payment { margin-top: 20px; }
+    .widget { position: relative; width: 100%; }
+    iframe { display: block; width: 100%; border: 0; border-radius: 12px; }
+    .button-frame { width: 172px; max-width: 100%; height: 56px; margin-inline: auto; }
+    .fundraise-frame { height: 500px; background: #ffffff; }
+    .widget-status { padding: 12px 0; font-size: 0.8125rem; color: var(--muted); text-align: center; }
+    .widget-status[hidden] { display: none; }
+    .note { display: flex; align-items: flex-start; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--outline); font-size: 0.8125rem; color: var(--muted); }
+    .note svg { margin-top: 3px; }
+    .thanks { padding: 12px 8px 0; text-align: center; color: var(--muted); font-size: 0.875rem; }
+    .thanks strong { display: block; margin-bottom: 4px; font-weight: 600; color: var(--foreground); }
+    @media (max-width: 350px) {
+      .card { padding: 16px 12px; }
+      .card-heading { gap: 10px; }
+      .card-icon { padding: 7px; }
     }
   </style>
 </head>
 <body>
-  <div class="section" id="support-widget">
-    <h2>☕ Подними нам мотивацию</h2>
-    <div class="widget-container">
-      <iframe
-        src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=15H9ASLS28U.240927&"
-        frameborder="0"
-        allowtransparency="true"
-        scrolling="no"
-      ></iframe>
-    </div>
-  </div>
-
-  <div class="section" id="account-widget">
-    <h2>📱 Покупка аккаунта разработчика в AppStore</h2>
-    <div class="widget-container">
-      <div class="widget-wrapper">
-        <iframe
-          src="https://yoomoney.ru/quickpay/fundraise/widget?billNumber=15H9APJUGQP.240927&"
-          frameborder="0"
-          allowtransparency="true"
-          scrolling="no"
-        ></iframe>
+  <main class="page">
+    <header class="intro">
+      <div class="intro-icon" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" /></svg>
       </div>
-    </div>
-    <p class="footnote">
-      *Покупка аккаунта разработчика не гарантирует прохождение проверок в AppStore и публикацию приложения
-    </p>
-  </div>
+      <h1>Помогите развивать Студенческий хаб</h1>
+      <p>Если приложение помогает вам каждый день, вы можете поддержать команду и его дальнейшее развитие.</p>
+    </header>
+
+    <section class="card" aria-labelledby="development-title">
+      <div class="card-heading">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18" /></svg>
+        </div>
+        <h2 id="development-title">Развитие приложения</h2>
+      </div>
+      <p class="description">Поддержите работу над новыми возможностями и улучшением приложения. Любая сумма — приятный знак, что наша работа вам полезна.</p>
+      <div class="payment">
+        <div class="widget">
+          <iframe class="button-frame" src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=15H9ASLS28U.240927" title="Поддержать развитие приложения через ЮMoney" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <p class="widget-status" role="status">Загрузка ЮMoney…</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="appstore-title">
+      <div class="card-heading">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3" /><path d="M10 5h4m-3 14h2" /></svg>
+        </div>
+        <h2 id="appstore-title">Публикация в App Store</h2>
+      </div>
+      <p class="description">Помогите оплатить аккаунт разработчика, необходимый для публикации приложения на iOS. Собранная сумма и прогресс отображаются в виджете ЮMoney.</p>
+      <div class="payment">
+        <div class="widget">
+          <iframe class="fundraise-frame" src="https://yoomoney.ru/quickpay/fundraise/widget?billNumber=15H9APJUGQP.240927" title="Сбор на аккаунт разработчика: собранная сумма и перевод через ЮMoney" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <p class="widget-status" role="status">Загрузка суммы и прогресса сбора…</p>
+        </div>
+      </div>
+      <p class="note">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9" /><path d="M12 11v6m0-10v.1" /></svg>
+        <span>Оплата аккаунта разработчика не гарантирует прохождение проверки и публикацию приложения в App Store.</span>
+      </p>
+    </section>
+
+    <footer class="thanks">
+      <strong>Спасибо, что вы с нами</strong>
+      Поддержка добровольна. Мы ценим ваше участие и обратную связь.
+    </footer>
+  </main>
+  <script>
+    for (const widget of document.querySelectorAll('.widget')) {
+      const frame = widget.querySelector('iframe');
+      const status = widget.querySelector('.widget-status');
+      const timeout = window.setTimeout(() => {
+        status.textContent = 'Виджет загружается дольше обычного. Пожалуйста, подождите.';
+      }, 12000);
+      frame.addEventListener('load', () => {
+        window.clearTimeout(timeout);
+        status.hidden = true;
+      }, { once: true });
+      frame.addEventListener('error', () => {
+        window.clearTimeout(timeout);
+        status.textContent = 'Не удалось загрузить ЮMoney. Проверьте подключение и откройте страницу заново.';
+      }, { once: true });
+    }
+    if (window.SupportPage) {
+      window.SupportPage.postMessage('ready');
+    }
+  </script>
 </body>
 </html>
