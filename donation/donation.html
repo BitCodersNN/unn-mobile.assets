@@ -46,7 +46,6 @@
     
     .intro { padding: 12px 4px 26px; }
     
-    /* Новый класс для выравнивания иконки и заголовка в одну строку */
     .intro-header {
       display: flex;
       align-items: center;
@@ -58,7 +57,6 @@
       place-items: center;
       width: 48px;
       height: 48px;
-      /* margin-bottom: 16px; удален, так как теперь используется gap в .intro-header */
       border: 1px solid var(--outline);
       border-radius: 16px;
       color: var(--primary);
@@ -74,12 +72,32 @@
     h2 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.015em; }
     .description { color: var(--muted); font-size: 0.9375rem; }
     .payment { margin-top: 20px; }
-    .widget { position: relative; width: 100%; }
-    iframe { display: block; width: 100%; border: 0; border-radius: 12px; }
+    .payment-dark { display: none; }
+    :root[data-theme="dark"] .payment-light { display: none; }
+    :root[data-theme="dark"] .payment-dark { display: block; }
+    iframe { display: block; width: 100%; border: 0; border-radius: 12px; color-scheme: light; }
     .button-frame { width: 172px; max-width: 100%; height: 56px; margin-inline: auto; }
     .fundraise-frame { height: 500px; background: #ffffff; }
-    .widget-status { padding: 12px 0; font-size: 0.8125rem; color: var(--muted); text-align: center; }
-    .widget-status[hidden] { display: none; }
+    .donate-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 16px;
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--primary);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .donate-link:hover { text-decoration: underline; }
+    .donate-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+    .payment-hint { margin-top: 8px; color: var(--muted); font-size: 0.8125rem; text-align: center; }
     .note { display: flex; align-items: flex-start; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--outline); font-size: 0.8125rem; color: var(--muted); }
     .note svg { margin-top: 3px; }
     .thanks { padding: 12px 8px 0; text-align: center; color: var(--muted); font-size: 0.875rem; }
@@ -127,7 +145,6 @@
 <body>
   <main class="page">
     <header class="intro">
-      <!-- Добавлена обертка .intro-header для горизонтального выравнивания -->
       <div class="intro-header">
         <div class="intro-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" /></svg>
@@ -145,11 +162,12 @@
         <h2 id="development-title">Развитие приложения</h2>
       </div>
       <p class="description">Поддержите работу над новыми возможностями и улучшением приложения. Любая сумма — приятный знак, что наша работа вам полезна.</p>
-      <div class="payment">
-        <div class="widget">
-          <iframe class="button-frame" src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=15H9ASLS28U.240927" title="Поддержать развитие приложения через ЮMoney" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          <p class="widget-status" role="status">Загрузка ЮMoney…</p>
-        </div>
+      <div class="payment payment-light">
+        <iframe class="button-frame" src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=15H9ASLS28U.240927" loading="lazy" title="Поддержать развитие приложения через ЮMoney" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="payment payment-dark">
+        <a class="donate-link" href="https://yoomoney.ru/to/410016302841211" referrerpolicy="strict-origin-when-cross-origin">Поддержать развитие через ЮMoney</a>
+        <p class="payment-hint">Вы перейдёте на сайт ЮMoney для перевода.</p>
       </div>
     </section>
 
@@ -161,11 +179,12 @@
         <h2 id="appstore-title">Публикация в App Store</h2>
       </div>
       <p class="description">Помогите оплатить аккаунт разработчика, необходимый для публикации приложения на iOS.</p>
-      <div class="payment">
-        <div class="widget">
-          <iframe class="fundraise-frame" src="https://yoomoney.ru/quickpay/fundraise/widget?billNumber=15H9APJUGQP.240927" title="Сбор на аккаунт разработчика: собранная сумма и перевод через ЮMoney" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          <p class="widget-status" role="status">Загрузка суммы и прогресса сбора…</p>
-        </div>
+      <div class="payment payment-light">
+        <iframe class="fundraise-frame" src="https://yoomoney.ru/quickpay/fundraise/widget?billNumber=15H9APJUGQP.240927" loading="lazy" title="Сбор на аккаунт разработчика: собранная сумма и перевод через ЮMoney" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="payment payment-dark">
+        <a class="donate-link" href="https://yoomoney.ru/fundraise/15H9APJUGQP.240927" referrerpolicy="strict-origin-when-cross-origin">Поддержать публикацию через ЮMoney</a>
+        <p class="payment-hint">Сумма, прогресс сбора и перевод — на сайте ЮMoney.</p>
       </div>
       <p class="note">
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9" /><path d="M12 11v6m0-10v.1" /></svg>
@@ -179,21 +198,6 @@
     </footer>
   </main>
   <script>
-    for (const widget of document.querySelectorAll('.widget')) {
-      const frame = widget.querySelector('iframe');
-      const status = widget.querySelector('.widget-status');
-      const timeout = window.setTimeout(() => {
-        status.textContent = 'Виджет загружается дольше обычного. Пожалуйста, подождите.';
-      }, 12000);
-      frame.addEventListener('load', () => {
-        window.clearTimeout(timeout);
-        status.hidden = true;
-      }, { once: true });
-      frame.addEventListener('error', () => {
-        window.clearTimeout(timeout);
-        status.textContent = 'Не удалось загрузить ЮMoney. Проверьте подключение и откройте страницу заново.';
-      }, { once: true });
-    }
     if (window.SupportPage) {
       window.SupportPage.postMessage('ready');
     }
