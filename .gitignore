@@ -1,0 +1,6 @@
+# Hidden files and directories at any level (OS metadata, editor settings, etc.).
+.*
+
+# Keep Git ignore rules and placeholders for empty asset directories.
+!.gitignore
+!.gitkeep
