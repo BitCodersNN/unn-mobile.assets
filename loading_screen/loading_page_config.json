@@ -1,42 +1,55 @@
 {
     "default": [
         {
-            "logo_path": "logos/light/classic/default-logo-light-classic.png",
+            "logo_path": "logos/light/common/default-logo-light-common.png",
             "name": "Default logo",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/default-logo.png"
+                    "common": {
+                        "logo_path": "logos/light/common/default-logo-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
-                    
+                    "common": {
+                        "logo_path": "logos/dark/common/default_logo_dark_classic.png"
+                    },
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         }
     ],
     "holidays": [
         {
-            "logo_path": "logos/light/classic/holidays/april-12th-light-classic.png",
+            "logo_path": "logos/light/common/holidays/april-12th-light-common.png",
             "name": "April 12th",
             "start_date": "04-12",
             "end_date": "04-12",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/holidays/april-12th-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/holidays/april-12th-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/holidays/march-8th-light-classic.png",
+            "logo_path": "logos/light/common/holidays/march-8th-light-common.png",
             "name": "March 8th",
             "start_date": "03-08",
             "end_date": "03-08",
@@ -50,54 +63,72 @@
             },
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/holidays/march-8th-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/holidays/march-8th-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/holidays/may-9th-light-classic.png",
+            "logo_path": "logos/light/common/holidays/may-9th-light-common.png",
             "name": "May 9th",
             "start_date": "05-09",
             "end_date": "05-09",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/holidays/may-9th-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/holidays/may-9th-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/holidays/new-year-light-classic.png",
+            "logo_path": "logos/light/common/holidays/new-year-light-common.png",
             "name": "New Year",
             "start_date": "01-01",
             "end_date": "01-11",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/holidays/new-year-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/holidays/new-year-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         }
     ],
     "faculty_days": [
         {
-            "logo_path": "logos/light/classic/faculty-days/imomi-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/imomi-light-common.png",
             "name": "IMOMI",
             "start_date": "12-27",
             "end_date": "12-27",
@@ -106,18 +137,24 @@
             },
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/imomi-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/imomi-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/fsn-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/fsn-light-common.png",
             "name": "FSN",
             "start_date": "12-25",
             "end_date": "12-25",
@@ -126,18 +163,24 @@
             },
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/fsn-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/fsn-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/himfak-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/himfak-light-common.png",
             "name": "HIMFAK",
             "start_date": "04-24",
             "end_date": "04-28",
@@ -146,52 +189,70 @@
             },
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/himfak-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/himfak-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/rf-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/rf-light-common.png",
             "name": "RF",
             "start_date": "06-29",
             "end_date": "06-29",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/rf-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/rf-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/iitmm-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/iitmm-light-common.png",
             "name": "IITMM",
             "start_date": "12-01",
             "end_date": "12-01",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/iitmm-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/iitmm-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/ibbm-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/ibbm-light-common.png",
             "name": "IBBM",
             "start_date": "12-11",
             "end_date": "12-11",
@@ -200,103 +261,139 @@
             },
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/ibbm-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/ibbm-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/fizfak-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/fizfak-light-common.png",
             "name": "FIZFAK",
             "start_date": "05-07",
             "end_date": "05-07",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/fizfak-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/fizfak-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/inek-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/inek-light-common.png",
             "name": "INEK",
             "start_date": "02-04",
             "end_date": "02-04",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/inek-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/inek-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/yurfak-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/yurfak-light-common.png",
             "name": "YURFAK",
             "start_date": "11-28",
             "end_date": "11-28",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/yurfak-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/yurfak-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/fks-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/fks-light-common.png",
             "name": "FKS",
             "start_date": "07-03",
             "end_date": "07-03",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/fks-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/fks-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/ikm-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/ikm-light-common.png",
             "name": "IKM",
             "start_date": "10-10",
             "end_date": "10-10",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/ikm-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/ikm-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/shkola-dizaina-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/shkola-dizaina-light-common.png",
             "name": "Shkola Dizaina",
             "start_date": "09-11",
             "end_date": "09-11",
@@ -305,47 +402,65 @@
             },
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/shkola-dizaina-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/shkola-dizaina-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/ifizh-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/ifizh-light-common.png",
             "name": "IFIZH",
             "start_date": "04-06",
             "end_date": "04-06",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/ifizh-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/ifizh-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         },
         {
-            "logo_path": "logos/light/classic/faculty-days/vshopf-light-classic.png",
+            "logo_path": "logos/light/common/faculty-days/vshopf-light-common.png",
             "name": "VSHOPF",
             "start_date": "11-21",
             "end_date": "11-21",
             "themes": {
                 "light": {
-                    "classic": {
-                        "logo_path": "logos/light/classic/faculty-days/vshopf-light-classic.png"
+                    "common": {
+                        "logo_path": "logos/light/common/faculty-days/vshopf-light-common.png"
+                    },
+                    "palettes": {
+                        "classic": {}
                     }
                 },
                 "dark": {
-                    "green": {},
-                    "graphite": {}
+                    "common": {},
+                    "palettes": {
+                        "green": {},
+                        "graphite": {}
+                    }
                 }
             }
         }
