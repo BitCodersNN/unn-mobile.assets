@@ -9,7 +9,8 @@
                         "logo_path": "logos/light/common/default-logo-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -36,7 +37,8 @@
                         "logo_path": "logos/light/common/holidays/april-12th-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -67,7 +69,8 @@
                         "logo_path": "logos/light/common/holidays/march-8th-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -90,7 +93,8 @@
                         "logo_path": "logos/light/common/holidays/may-9th-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -113,7 +117,8 @@
                         "logo_path": "logos/light/common/holidays/new-year-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -141,7 +146,8 @@
                         "logo_path": "logos/light/common/faculty-days/imomi-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -167,7 +173,8 @@
                         "logo_path": "logos/light/common/faculty-days/fsn-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -193,7 +200,8 @@
                         "logo_path": "logos/light/common/faculty-days/himfak-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -216,7 +224,8 @@
                         "logo_path": "logos/light/common/faculty-days/rf-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -239,7 +248,8 @@
                         "logo_path": "logos/light/common/faculty-days/iitmm-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -265,7 +275,8 @@
                         "logo_path": "logos/light/common/faculty-days/ibbm-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -288,7 +299,8 @@
                         "logo_path": "logos/light/common/faculty-days/fizfak-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -311,7 +323,8 @@
                         "logo_path": "logos/light/common/faculty-days/inek-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -334,7 +347,8 @@
                         "logo_path": "logos/light/common/faculty-days/yurfak-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -357,7 +371,8 @@
                         "logo_path": "logos/light/common/faculty-days/fks-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -380,7 +395,8 @@
                         "logo_path": "logos/light/common/faculty-days/ikm-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -406,7 +422,8 @@
                         "logo_path": "logos/light/common/faculty-days/shkola-dizaina-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -429,7 +446,8 @@
                         "logo_path": "logos/light/common/faculty-days/ifizh-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {
@@ -452,7 +470,8 @@
                         "logo_path": "logos/light/common/faculty-days/vshopf-light-common.png"
                     },
                     "palettes": {
-                        "classic": {}
+                        "green": {},
+                        "blue": {}
                     }
                 },
                 "dark": {

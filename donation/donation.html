@@ -21,6 +21,15 @@
       text-size-adjust: 100%;
     }
 
+    :root[data-theme="light"][data-palette="blue"] {
+      --background: #ffffff;
+      --surface: #f6f8fa;
+      --foreground: #1f2328;
+      --muted: #59636e;
+      --primary: #0969da;
+      --outline: #d1d9e0;
+    }
+
     :root[data-theme="dark"] {
       color-scheme: dark;
       --background: #101d1b;
@@ -36,6 +45,7 @@
       --surface: #1d1d28;
       --foreground: #e6e5ef;
       --muted: #c1bece;
+      --primary: #c3b2ef;
       --outline: #454352;
     }
 
@@ -121,6 +131,7 @@
     const parameters = new URLSearchParams(window.location.search);
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
     const colorNames = ['background', 'surface', 'foreground', 'muted', 'primary', 'outline'];
+    const palettes = { light: ['green', 'blue'], dark: ['green', 'graphite'] };
     let requestedTheme = 'auto';
     let requestedPalette = null;
     let requestedColors = {};
@@ -131,9 +142,9 @@
         ? (systemTheme.matches ? 'dark' : 'light')
         : requestedTheme;
       root.dataset.theme = theme;
-      root.dataset.palette = theme === 'light'
-        ? 'classic'
-        : (requestedPalette === 'graphite' ? 'graphite' : 'green');
+      root.dataset.palette = palettes[theme].includes(requestedPalette)
+        ? requestedPalette
+        : 'green';
       for (const name of colorNames) {
         const value = requestedColors[name];
         if (typeof value === 'string' && /^[\da-f]{6}$/i.test(value)) {
