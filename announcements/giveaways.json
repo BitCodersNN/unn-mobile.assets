@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "id": "test_giveaway_2026_11",
+      "enabled": true,
+      "badge": "РОЗЫГРЫШ",
+      "animation": "default",
+      "title": "Тестовый розыгрыш призов!",
+      "text": "Это тестовое объявление о конкурсе. Подписывайтесь на наш Telegram-канал и следите за новостями UNN Mobile.",
+      "images": [],
+      "period": {
+        "start_at": "2026-11-22T00:00:00+03:00",
+        "end_at": "2026-12-31T23:59:59+03:00"
+      },
+      "target": {
+        "user_type": "all",
+        "channel": "all"
+      },
+      "policy": {
+        "frequency": "once_per_day",
+        "interval_hours": null,
+        "max_shows": null,
+        "stop_on_action": true,
+        "frequency_after_action": null,
+        "stop_on_dismiss": false
+      },
+      "action": {
+        "label": "Перейти в Telegram-канал",
+        "url": "https://t.me/unn_mobile"
+      }
+    }
+  ]
+}
