@@ -26,7 +26,9 @@
       },
       "action": {
         "label": "Перейти в Telegram-канал",
-        "url": "https://t.me/unn_mobile"
+        "urls": {
+          "default": "https://t.me/unn_mobile"
+        }
       }
     }
   ]

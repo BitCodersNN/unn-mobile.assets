@@ -44,7 +44,7 @@ announcements/
 | `images` | `List<String>` | Нет | `[]` | Относительные пути к картинкам внутри `announcements/` (например, `["images/giveaway_1.png"]`). Если список пустой — блок карусели скрыт. |
 | `period` | `Object?` | Нет | `null` | Период активности события (`start_at`, `end_at`). |
 | `policy` | `Object?` | Нет | См. ниже | Правила частоты показа и реакции на переход по ссылке или закрытие окна. |
-| `action` | `Object?` | Нет | `null` | Основная кнопка действия (`label`, `url`). Если `null` — кнопка перехода не отображается (только закрытие). |
+| `action` | `Object?` | Нет | `null` | Основная кнопка действия (`label`, `urls`). Если `null` или для текущего окружения не найдена подходящая ссылка — кнопка перехода не отображается (только закрытие). |
 | `target` | `Object?` | Нет | `null` | Фильтр целевой аудитории по типу пользователя, каналу сборки, платформе, стору, версии и номеру сборки. |
 
 ---
@@ -132,16 +132,43 @@ announcements/
 
 ### Объект `action` (кнопка действия)
 
+Для розыгрышей и рекламы (одна общая ссылка):
 ```json
 "action": {
-  "label": "Перейти в Telegram-канал",
-  "url": "https://t.me/unn_mobile"
+  "label": "Участвовать",
+  "urls": {
+    "default": "https://t.me/unn_mobile"
+  }
+}
+```
+
+Для обновлений (разделение по iOS и каждому flavor Android):
+```json
+"action": {
+  "label": "Обновить",
+  "urls": {
+    "ios": "https://apps.apple.com/app/...",
+    "regular": "https://github.com/BitCodersNN/unn-mobile/releases/latest",
+    "regularTest": "https://t.me/unn_mobile_beta",
+    "rustore": "https://www.rustore.ru/catalog/app/...",
+    "rustoreTest": "https://www.rustore.ru/catalog/app/...-beta",
+    "googlePlay": "https://play.google.com/store/apps/details?id=...",
+    "googlePlayTest": "https://play.google.com/apps/testing/..."
+  }
 }
 ```
 
 - **`label`** (`String`) — текст на кнопке.
-- **`url`** (`String`) — ссылка, открываемая при нажатии.
-- Если `action` равен `null` или отсутствует, кнопка действия не отображается.
+- **`urls`** (`Map<String, String>`) — словарь ссылок по платформе / flavor / стору. Ключи сравниваются без учёта регистра и пробелов.
+- **Приоритет подбора ссылки** (первое непустое совпадение):
+  1. `<platform>:<flavor>` (например, `android:regularTest`, `ios:regular`);
+  2. `<platform>:<store>` (например, `android:rustore`);
+  3. `<flavor>` — для Android (`regular`, `regularTest`, `rustore`, `rustoreTest`, `googlePlay`, `googlePlayTest`);
+  4. `<store>` — для Android (`regular`, `rustore`, `googlePlay`);
+  5. `<platform>` (`android`, `ios`);
+  6. `default`.
+- Все 6 flavor-ключей необязательно заполнять, если часть ссылок совпадает (например, можно указать только `rustore` — он сработает и для `rustore`, и для `rustoreTest`, если не задан более точный ключ).
+- Если `action` равен `null`, отсутствует или для текущего окружения не найдено ни одного подходящего ключа в `urls`, кнопка действия не отображается.
 
 ---
 
@@ -177,8 +204,10 @@ announcements/
         "stop_on_dismiss": false
       },
       "action": {
-        "label": "Перейти в Telegram-канал",
-        "url": "https://t.me/unn_mobile"
+        "label": "Участвовать",
+        "urls": {
+          "default": "https://t.me/unn_mobile"
+        }
       }
     }
   ]
@@ -195,8 +224,8 @@ announcements/
       "enabled": true,
       "badge": "ОБНОВЛЕНИЕ",
       "animation": "default",
-      "title": "Доступна новая бета-версия UNN Mobile!",
-      "text": "В новой сборке добавлены динамические виджеты и улучшена работа ленты. Обновитесь через Telegram-канал.",
+      "title": "Доступна новая версия UNN Mobile!",
+      "text": "В новой сборке добавлены динамические виджеты и улучшена работа ленты.",
       "images": [],
       "period": {
         "start_at": "2026-11-22",
@@ -205,7 +234,7 @@ announcements/
       "target": {
         "user_type": "all",
         "channel": "all",
-        "platforms": ["android"],
+        "platforms": ["android", "ios"],
         "max_build": 471
       },
       "policy": {
@@ -215,8 +244,16 @@ announcements/
         "stop_on_dismiss": true
       },
       "action": {
-        "label": "Скачать в Telegram",
-        "url": "https://t.me/unn_mobile"
+        "label": "Обновить",
+        "urls": {
+          "ios": "https://apps.apple.com/app/...",
+          "regular": "https://github.com/BitCodersNN/unn-mobile/releases/latest",
+          "regularTest": "https://t.me/unn_mobile_beta",
+          "rustore": "https://www.rustore.ru/catalog/app/...",
+          "rustoreTest": "https://www.rustore.ru/catalog/app/...-beta",
+          "googlePlay": "https://play.google.com/store/apps/details?id=...",
+          "googlePlayTest": "https://play.google.com/apps/testing/..."
+        }
       }
     }
   ]
