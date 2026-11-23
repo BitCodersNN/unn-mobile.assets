@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101d1b" />
+  <title>Палитра для UNN Mobile — Портал ННГУ</title>
+  <meta
+    name="description"
+    content="Откройте пользовательскую цветовую палитру в приложении UNN Mobile (Студенческий Хаб для ННГУ) или установите приложение из RuStore, Google Play или Telegram."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Пользовательская палитра для UNN Mobile" />
+  <meta
+    property="og:description"
+    content="Нажмите, чтобы посмотреть палитру и применить её в мобильном приложении Портала ННГУ (UNN Mobile)."
+  />
+  <meta
+    property="og:image"
+    content="https://raw.githubusercontent.com/BitCodersNN/unn-mobile.assets/develop/loading_screen/logos/dark/common/default_logo_dark_classic.png"
+  />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101d1b;
+      --surface: #192b28;
+      --card: #203530;
+      --text: #deede8;
+      --muted: #afc5be;
+      --accent: #529388;
+      --accent-fg: #06221e;
+      --border: rgba(129, 155, 146, 0.28);
+      --glow: rgba(82, 147, 136, 0.16);
+      --badge-bg: rgba(82, 147, 136, 0.18);
+      --swatch-bg: rgba(0, 0, 0, 0.16);
+      --swatch-dot-border: rgba(255, 255, 255, 0.25);
+      --control-bg: rgba(255, 255, 255, 0.06);
+      --control-hover: rgba(255, 255, 255, 0.1);
+      --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+      --toast-bg: #0c1715;
+      --toast-fg: #deede8;
+      --radius: 22px;
+    }
+
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f5fbf9;
+      --surface: #ffffff;
+      --card: #f0f6f4;
+      --text: #1f2328;
+      --muted: #59636e;
+      --accent: #006a63;
+      --accent-fg: #ffffff;
+      --border: rgba(31, 35, 40, 0.14);
+      --glow: rgba(0, 106, 99, 0.12);
+      --badge-bg: rgba(0, 106, 99, 0.12);
+      --swatch-bg: rgba(31, 35, 40, 0.04);
+      --swatch-dot-border: rgba(31, 35, 40, 0.18);
+      --control-bg: rgba(31, 35, 40, 0.04);
+      --control-hover: rgba(31, 35, 40, 0.08);
+      --card-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+      --toast-bg: #1f2328;
+      --toast-fg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: radial-gradient(circle at top, var(--glow), transparent 55%), var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px 40px;
+      line-height: 1.45;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 4px 2px;
+    }
+
+    .logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      object-fit: contain;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+
+    .header-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .header-text p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--badge-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .preview-phone {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .preview-appbar {
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    }
+
+    .preview-body {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .preview-post {
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid rgba(128, 128, 128, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .preview-post-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .preview-post-sub {
+      font-size: 11px;
+      opacity: 0.78;
+    }
+
+    .preview-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .preview-pills {
+      display: flex;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .preview-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+      gap: 8px;
+    }
+
+    .swatch {
+      background: var(--swatch-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .swatch-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid var(--swatch-dot-border);
+      flex-shrink: 0;
+    }
+
+    .swatch-meta {
+      min-width: 0;
+    }
+
+    .swatch-name {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .swatch-hex {
+      font-size: 11px;
+      font-weight: 600;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.12s ease, opacity 0.15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.985);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-fg);
+    }
+
+    .btn-secondary {
+      background: var(--control-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--control-hover);
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: -6px;
+    }
+
+    .stores {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .store-link {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--control-bg);
+      border: 1px solid var(--border);
+      transition: background 0.15s ease;
+    }
+
+    .store-link:hover {
+      background: var(--control-hover);
+    }
+
+    .store-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .store-note {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--toast-bg);
+      color: var(--toast-fg);
+      border: 1px solid var(--border);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      padding: 4px 8px;
+    }
+
+    .footer a {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <img
+        id="app-logo"
+        class="logo"
+        src="https://raw.githubusercontent.com/BitCodersNN/unn-mobile.assets/develop/loading_screen/logos/dark/common/default_logo_dark_classic.png"
+        alt="UNN Mobile"
+      />
+      <div class="header-text">
+        <h1>UNN Mobile</h1>
+        <p>Студенческий Хаб для Портала ННГУ</p>
+      </div>
+    </header>
+
+    <section id="palette-card" class="card hidden">
+      <div class="badge-row">
+        <span class="section-title">Пользовательская палитра</span>
+        <span id="brightness-badge" class="badge">Тёмная тема</span>
+      </div>
+
+      <div id="preview-phone" class="preview-phone">
+        <div id="preview-appbar" class="preview-appbar">Лента</div>
+        <div class="preview-body">
+          <div id="preview-important" class="preview-post">
+            <div class="preview-post-head">
+              <span id="preview-imp-author">Деканат ИИТММ</span>
+              <span id="preview-imp-tag" class="preview-tag">Важное</span>
+            </div>
+            <div id="preview-imp-text" class="preview-post-sub">
+              Открыта регистрация на студенческую олимпиаду.
+            </div>
+          </div>
+
+          <div id="preview-normal" class="preview-post">
+            <div class="preview-post-head">
+              <span id="preview-author">Иван Петров</span>
+              <span id="preview-time" class="preview-post-sub">10 мин назад</span>
+            </div>
+            <div id="preview-text" class="preview-post-sub">
+              Подробности и расписание уже доступны в приложении.
+            </div>
+            <div class="preview-pills">
+              <span id="preview-primary-pill" class="preview-pill">❤ 12</span>
+              <span id="preview-secondary-pill" class="preview-pill">💬 4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="swatches" class="swatches"></div>
+
+      <div class="actions">
+        <a id="open-app-btn" class="btn btn-primary" href="#">
+          Открыть в UNN Mobile
+        </a>
+        <button id="copy-code-btn" class="btn btn-secondary" type="button">
+          Скопировать код палитры
+        </button>
+      </div>
+    </section>
+
+    <section id="empty-card" class="card hidden">
+      <div class="section-title">Ссылка на палитру не распознана</div>
+      <p class="section-sub">
+        Попросите друга отправить ссылку или код палитры ещё раз, либо создайте свою
+        палитру в разделе «Настройки → Оформление» приложения UNN Mobile.
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Ещё нет UNN Mobile?</div>
+      <p class="section-sub">
+        Установите приложение, затем вернитесь на эту страницу и нажмите «Открыть в UNN Mobile»
+        или вставьте скопированный код в настройках.
+      </p>
+      <div class="stores">
+        <a
+          class="store-link"
+          href="https://www.rustore.ru/catalog/app/ru.unn.unn_mobile"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="store-name">RuStore</span>
+          <span class="store-note">Android</span>
+        </a>
+        <a
+          class="store-link"
+          href="https://play.google.com/store/apps/details?id=ru.bitcodersnn.unnstudenthub"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="store-name">Google Play</span>
+          <span class="store-note">Android</span>
+        </a>
+        <a
+          class="store-link"
+          href="https://t.me/unn_mobile"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="store-name">Telegram</span>
+          <span class="store-note">Новости</span>
+        </a>
+        <a
+          class="store-link"
+          href="https://github.com/BitCodersNN/unn-mobile/releases"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="store-name">GitHub Releases</span>
+          <span class="store-note">APK и IPA</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Неофициальное приложение для Портала ННГУ ·
+      <a href="https://t.me/unn_mobile" target="_blank" rel="noopener">@unn_mobile</a>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast">Код палитры скопирован</div>
+
+  <script>
+    (function () {
+      const PREFIX = 'unn-palette:';
+      const LOGO_DARK =
+        'https://raw.githubusercontent.com/BitCodersNN/unn-mobile.assets/develop/loading_screen/logos/dark/common/default_logo_dark_classic.png';
+      const LOGO_LIGHT =
+        'https://raw.githubusercontent.com/BitCodersNN/unn-mobile.assets/develop/loading_screen/logos/light/common/default-logo-light-common.png';
+
+      function applyPageTheme(isDark, colors) {
+        const root = document.documentElement;
+        root.dataset.theme = isDark ? 'dark' : 'light';
+
+        const logo = document.getElementById('app-logo');
+        if (logo) {
+          logo.src = isDark ? LOGO_DARK : LOGO_LIGHT;
+        }
+
+        if (colors) {
+          root.style.setProperty('--bg', colors.surface);
+          root.style.setProperty('--surface', colors.card);
+          root.style.setProperty('--text', colors.onSurface);
+          root.style.setProperty('--muted', colors.onSurfaceVariant);
+          root.style.setProperty('--accent', colors.primary);
+          root.style.setProperty(
+            '--accent-fg',
+            isLightColor(colors.primary) ? '#06221E' : '#FFFFFF',
+          );
+          root.style.setProperty(
+            '--border',
+            hexToRgba(colors.outline, isDark ? 0.5 : 0.65),
+          );
+          root.style.setProperty(
+            '--glow',
+            hexToRgba(colors.primary, isDark ? 0.18 : 0.14),
+          );
+          root.style.setProperty(
+            '--badge-bg',
+            hexToRgba(colors.primary, isDark ? 0.2 : 0.14),
+          );
+          root.style.setProperty('--toast-bg', isDark ? colors.card : colors.onSurface);
+          root.style.setProperty('--toast-fg', isDark ? colors.onSurface : colors.card);
+        }
+
+        const themeMeta = document.querySelector('meta[name="theme-color"]');
+        if (themeMeta) {
+          themeMeta.content =
+            (colors && colors.surface) ||
+            getComputedStyle(root).getPropertyValue('--bg').trim();
+        }
+      }
+
+      function argbToHex(value) {
+        if (typeof value !== 'number' || !Number.isFinite(value)) return null;
+        const rgb = (value >>> 0) & 0xffffff;
+        return '#' + rgb.toString(16).padStart(6, '0').toUpperCase();
+      }
+
+      function hexToRgba(hex, alpha) {
+        const clean = hex.replace('#', '');
+        const r = parseInt(clean.slice(0, 2), 16);
+        const g = parseInt(clean.slice(2, 4), 16);
+        const b = parseInt(clean.slice(4, 6), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+      }
+
+      function isLightColor(hex) {
+        const clean = hex.replace('#', '');
+        const r = parseInt(clean.slice(0, 2), 16);
+        const g = parseInt(clean.slice(2, 4), 16);
+        const b = parseInt(clean.slice(4, 6), 16);
+        return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.6;
+      }
+
+      function decodeBase64Url(token) {
+        let base64 = token.replace(/-/g, '+').replace(/_/g, '/');
+        while (base64.length % 4 !== 0) {
+          base64 += '=';
+        }
+        const binary = atob(base64);
+        const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
+        return new TextDecoder('utf-8').decode(bytes);
+      }
+
+      function extractParams() {
+        const search = new URLSearchParams(window.location.search);
+        let brightness = search.get('b');
+        let code = search.get('c');
+
+        if (!code && window.location.hash) {
+          const hash = window.location.hash.slice(1);
+          const hashParams = new URLSearchParams(hash);
+          if (hashParams.get('c')) {
+            code = hashParams.get('c');
+            brightness = brightness || hashParams.get('b');
+          } else if (hash.startsWith(PREFIX)) {
+            code = hash.slice(PREFIX.length);
+          } else if (hash.includes(':')) {
+            const parts = hash.split(':');
+            if (parts[0] === 'light' || parts[0] === 'dark') {
+              brightness = brightness || parts[0];
+              code = parts.slice(1).join(':');
+            }
+          }
+        }
+
+        if (code && code.startsWith(PREFIX)) {
+          code = code.slice(PREFIX.length);
+        }
+
+        brightness = brightness === 'light' ? 'light' : 'dark';
+        return { brightness, code: code ? code.trim() : null };
+      }
+
+      function parsePalette(code) {
+        if (!code) return null;
+        try {
+          const jsonStr = decodeBase64Url(code);
+          const data = JSON.parse(jsonStr);
+          if (!data || typeof data.primary !== 'number' || typeof data.secondary !== 'number') {
+            return null;
+          }
+          const overrides = (data.overrides && typeof data.overrides === 'object') ? data.overrides : {};
+          return {
+            primary: argbToHex(data.primary),
+            secondary: argbToHex(data.secondary),
+            surface: argbToHex(overrides.surface),
+            cardSurface: argbToHex(overrides.cardSurface),
+            importantPostHighlight: argbToHex(overrides.importantPostHighlight),
+            onSurface: argbToHex(overrides.onSurface),
+            onSurfaceVariant: argbToHex(overrides.onSurfaceVariant),
+            outlineVariant: argbToHex(overrides.outlineVariant),
+          };
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.setTimeout(() => toast.classList.remove('show'), 2200);
+      }
+
+      const { brightness, code } = extractParams();
+      const palette = parsePalette(code);
+      const paletteCard = document.getElementById('palette-card');
+      const emptyCard = document.getElementById('empty-card');
+
+      if (!palette) {
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+        applyPageTheme(systemDark.matches);
+        systemDark.addEventListener('change', (e) => applyPageTheme(e.matches));
+        emptyCard.classList.remove('hidden');
+        return;
+      }
+
+      paletteCard.classList.remove('hidden');
+
+      const isDark = brightness === 'dark';
+      const surface = palette.surface || (isDark ? '#101D1B' : '#F5FBF9');
+      const card = palette.cardSurface || (isDark ? '#192B28' : '#FFFFFF');
+      const onSurface = palette.onSurface || (isDark ? '#DEEDE8' : '#1F2328');
+      const onSurfaceVariant = palette.onSurfaceVariant || (isDark ? '#AFC5BE' : '#59636E');
+      const outline = palette.outlineVariant || (isDark ? '#3A4E48' : '#D1D9E0');
+      const important = palette.importantPostHighlight || (isDark ? '#F2B8AD' : '#B3261E');
+
+      applyPageTheme(isDark, {
+        surface,
+        card,
+        onSurface,
+        onSurfaceVariant,
+        outline,
+        primary: palette.primary,
+      });
+
+      document.getElementById('brightness-badge').textContent =
+        isDark ? 'Тёмная тема' : 'Светлая тема';
+
+      // Preview phone styling
+      const phone = document.getElementById('preview-phone');
+      const appbar = document.getElementById('preview-appbar');
+      const impPost = document.getElementById('preview-important');
+      const impTag = document.getElementById('preview-imp-tag');
+      const normPost = document.getElementById('preview-normal');
+      const primaryPill = document.getElementById('preview-primary-pill');
+      const secondaryPill = document.getElementById('preview-secondary-pill');
+
+      phone.style.background = surface;
+      phone.style.borderColor = hexToRgba(outline, 0.7);
+
+      appbar.style.background = surface;
+      appbar.style.color = onSurface;
+      appbar.style.borderBottomColor = hexToRgba(outline, 0.45);
+
+      impPost.style.background = `linear-gradient(180deg, ${hexToRgba(important, isDark ? 0.22 : 0.1)}, ${card})`;
+      impPost.style.borderColor = hexToRgba(important, isDark ? 0.5 : 0.3);
+      impPost.style.color = onSurface;
+      document.getElementById('preview-imp-text').style.color = onSurfaceVariant;
+      impTag.style.background = hexToRgba(important, 0.2);
+      impTag.style.color = important;
+
+      normPost.style.background = card;
+      normPost.style.borderColor = hexToRgba(outline, 0.5);
+      normPost.style.color = onSurface;
+      document.getElementById('preview-time').style.color = onSurfaceVariant;
+      document.getElementById('preview-text').style.color = onSurfaceVariant;
+
+      primaryPill.style.background = hexToRgba(palette.primary, 0.18);
+      primaryPill.style.color = palette.primary;
+
+      secondaryPill.style.background = hexToRgba(palette.secondary, 0.18);
+      secondaryPill.style.color = palette.secondary;
+
+      // Accent the CTA button with the palette's primary color
+      const openBtn = document.getElementById('open-app-btn');
+      openBtn.style.background = palette.primary;
+      openBtn.style.color = isLightColor(palette.primary) ? '#06221E' : '#FFFFFF';
+      openBtn.href = `unnpalette://import?b=${encodeURIComponent(brightness)}&c=${encodeURIComponent(code)}`;
+
+      // Render swatches
+      const swatchesEl = document.getElementById('swatches');
+      const swatchItems = [
+        { name: 'Фон', hex: surface },
+        { name: 'Карточки', hex: card },
+        { name: 'Акцент', hex: palette.primary },
+        { name: 'Доп. акцент', hex: palette.secondary },
+      ];
+      for (const item of swatchItems) {
+        const div = document.createElement('div');
+        div.className = 'swatch';
+        div.innerHTML =
+          `<span class="swatch-dot" style="background:${item.hex}"></span>` +
+          `<div class="swatch-meta">` +
+          `<div class="swatch-name">${item.name}</div>` +
+          `<div class="swatch-hex">${item.hex}</div>` +
+          `</div>`;
+        swatchesEl.appendChild(div);
+      }
+
+      // Copy code button
+      const fullCode = PREFIX + code;
+      document.getElementById('copy-code-btn').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(fullCode);
+          showToast('Код палитры скопирован');
+        } catch (_) {
+          const input = document.createElement('textarea');
+          input.value = fullCode;
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand('copy');
+          document.body.removeChild(input);
+          showToast('Код палитры скопирован');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
