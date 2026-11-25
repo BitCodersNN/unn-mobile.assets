@@ -505,6 +505,34 @@
   <script>
     (function () {
       const PREFIX = 'unn-palette:';
+      const FORMAT_VERSION = 1;
+      const VERSION_MASK = 0x3f;
+      const HAS_BRIGHTNESS_FLAG = 0x40;
+      const DARK_FLAG = 0x80;
+      const HEADER_LENGTH = 10;
+      const OVERRIDE_SLOTS = [
+        'surface',
+        'cardSurface',
+        'importantPostHighlight',
+        'onSurface',
+        'onSurfaceVariant',
+        'outlineVariant',
+        'wideButtonBottom',
+        'subjectLecture',
+        'subjectPractice',
+        'subjectLab',
+        'subjectExam',
+        'subjectConsult',
+        'subjectUnknown',
+        'markExcellent',
+        'markGood',
+        'markSatisfactory',
+        'markUnsatisfactory',
+        'markCredited',
+        'markNoShow',
+        'shimmerBase',
+        'shimmerHighlight',
+      ];
       const LOGO_DARK =
         'https://raw.githubusercontent.com/BitCodersNN/unn-mobile.assets/develop/loading_screen/logos/dark/common/default_logo_dark_classic.png';
       const LOGO_LIGHT =
@@ -553,10 +581,11 @@
         }
       }
 
-      function argbToHex(value) {
-        if (typeof value !== 'number' || !Number.isFinite(value)) return null;
-        const rgb = (value >>> 0) & 0xffffff;
-        return '#' + rgb.toString(16).padStart(6, '0').toUpperCase();
+      function rgbToHex(r, g, b) {
+        return (
+          '#' +
+          [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('').toUpperCase()
+        );
       }
 
       function hexToRgba(hex, alpha) {
@@ -575,35 +604,26 @@
         return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.6;
       }
 
-      function decodeBase64Url(token) {
+      function decodeBase64UrlBytes(token) {
         let base64 = token.replace(/-/g, '+').replace(/_/g, '/');
         while (base64.length % 4 !== 0) {
           base64 += '=';
         }
         const binary = atob(base64);
-        const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
-        return new TextDecoder('utf-8').decode(bytes);
+        return Uint8Array.from(binary, (c) => c.charCodeAt(0));
       }
 
-      function extractParams() {
+      function extractCode() {
         const search = new URLSearchParams(window.location.search);
-        let brightness = search.get('b');
         let code = search.get('c');
 
         if (!code && window.location.hash) {
-          const hash = window.location.hash.slice(1);
+          const hash = window.location.hash.slice(1).replace(/^\?/, '');
           const hashParams = new URLSearchParams(hash);
           if (hashParams.get('c')) {
             code = hashParams.get('c');
-            brightness = brightness || hashParams.get('b');
           } else if (hash.startsWith(PREFIX)) {
             code = hash.slice(PREFIX.length);
-          } else if (hash.includes(':')) {
-            const parts = hash.split(':');
-            if (parts[0] === 'light' || parts[0] === 'dark') {
-              brightness = brightness || parts[0];
-              code = parts.slice(1).join(':');
-            }
           }
         }
 
@@ -611,28 +631,50 @@
           code = code.slice(PREFIX.length);
         }
 
-        brightness = brightness === 'light' ? 'light' : 'dark';
-        return { brightness, code: code ? code.trim() : null };
+        return code ? code.trim() : null;
       }
 
       function parsePalette(code) {
         if (!code) return null;
         try {
-          const jsonStr = decodeBase64Url(code);
-          const data = JSON.parse(jsonStr);
-          if (!data || typeof data.primary !== 'number' || typeof data.secondary !== 'number') {
-            return null;
+          const bytes = decodeBase64UrlBytes(code);
+          if (bytes.length < HEADER_LENGTH) return null;
+
+          const header = bytes[0];
+          if ((header & VERSION_MASK) !== FORMAT_VERSION) return null;
+
+          const hasBrightness = (header & HAS_BRIGHTNESS_FLAG) !== 0;
+          const isDark = hasBrightness ? (header & DARK_FLAG) !== 0 : true;
+          const primary = rgbToHex(bytes[1], bytes[2], bytes[3]);
+          const secondary = rgbToHex(bytes[4], bytes[5], bytes[6]);
+          const mask = (bytes[7] << 16) | (bytes[8] << 8) | bytes[9];
+          if (mask >> OVERRIDE_SLOTS.length !== 0) return null;
+
+          const overrides = {};
+          let offset = HEADER_LENGTH;
+          for (let i = 0; i < OVERRIDE_SLOTS.length; i++) {
+            if ((mask & (1 << i)) !== 0) {
+              if (offset + 3 > bytes.length) return null;
+              overrides[OVERRIDE_SLOTS[i]] = rgbToHex(
+                bytes[offset],
+                bytes[offset + 1],
+                bytes[offset + 2]
+              );
+              offset += 3;
+            }
           }
-          const overrides = (data.overrides && typeof data.overrides === 'object') ? data.overrides : {};
+          if (offset !== bytes.length) return null;
+
           return {
-            primary: argbToHex(data.primary),
-            secondary: argbToHex(data.secondary),
-            surface: argbToHex(overrides.surface),
-            cardSurface: argbToHex(overrides.cardSurface),
-            importantPostHighlight: argbToHex(overrides.importantPostHighlight),
-            onSurface: argbToHex(overrides.onSurface),
-            onSurfaceVariant: argbToHex(overrides.onSurfaceVariant),
-            outlineVariant: argbToHex(overrides.outlineVariant),
+            isDark,
+            primary,
+            secondary,
+            surface: overrides.surface || null,
+            cardSurface: overrides.cardSurface || null,
+            importantPostHighlight: overrides.importantPostHighlight || null,
+            onSurface: overrides.onSurface || null,
+            onSurfaceVariant: overrides.onSurfaceVariant || null,
+            outlineVariant: overrides.outlineVariant || null,
           };
         } catch (_) {
           return null;
@@ -646,7 +688,7 @@
         window.setTimeout(() => toast.classList.remove('show'), 2200);
       }
 
-      const { brightness, code } = extractParams();
+      const code = extractCode();
       const palette = parsePalette(code);
       const paletteCard = document.getElementById('palette-card');
       const emptyCard = document.getElementById('empty-card');
@@ -661,7 +703,7 @@
 
       paletteCard.classList.remove('hidden');
 
-      const isDark = brightness === 'dark';
+      const isDark = palette.isDark;
       const surface = palette.surface || (isDark ? '#101D1B' : '#F5FBF9');
       const card = palette.cardSurface || (isDark ? '#192B28' : '#FFFFFF');
       const onSurface = palette.onSurface || (isDark ? '#DEEDE8' : '#1F2328');
@@ -720,7 +762,7 @@
       const openBtn = document.getElementById('open-app-btn');
       openBtn.style.background = palette.primary;
       openBtn.style.color = isLightColor(palette.primary) ? '#06221E' : '#FFFFFF';
-      openBtn.href = `unnpalette://import?b=${encodeURIComponent(brightness)}&c=${encodeURIComponent(code)}`;
+      openBtn.href = `unnpalette://import?c=${encodeURIComponent(code)}`;
 
       // Render swatches
       const swatchesEl = document.getElementById('swatches');
